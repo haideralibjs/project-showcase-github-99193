@@ -1,0 +1,118 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 100% 97%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 173 80% 40%;
+    --accent-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 199 89% 48%;
+    --radius: 0.75rem;
+    
+    /* Vibrant gradient colors - blue to teal */
+    --gradient-start: 199 89% 48%;
+    --gradient-mid: 184 77% 52%;
+    --gradient-end: 173 80% 40%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 173 80% 40%;
+    --accent-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 199 89% 48%;
+    
+    /* Vibrant gradient colors for dark mode - brighter variants */
+    --gradient-start: 199 89% 58%;
+    --gradient-mid: 184 77% 62%;
+    --gradient-end: 173 80% 50%;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body.light {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(190 100% 96%) 100%);
+  }
+  
+  body.dark {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 84% 8%) 100%);
+  }
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  position: relative;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    hsl(var(--gradient-start)) 0%, 
+    hsl(var(--gradient-mid)) 50%, 
+    hsl(var(--gradient-end)) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.card-hover:hover::before {
+  opacity: 1;
+}
+
+.card-gradient-border {
+  position: relative;
+  background: hsl(var(--card));
+  border: 2px solid hsl(var(--border));
+  background-clip: padding-box;
+  box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05);
+  transition: all 0.3s ease;
+}
+
+.card-gradient-border:hover {
+  border-color: hsl(var(--gradient-start) / 0.5);
+  box-shadow: 
+    0 20px 25px -5px hsl(var(--foreground) / 0.1),
+    0 10px 10px -5px hsl(var(--foreground) / 0.04),
+    0 0 30px hsl(var(--gradient-start) / 0.3);
+}
+
