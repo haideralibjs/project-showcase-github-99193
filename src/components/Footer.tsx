@@ -30,7 +30,7 @@ const Footer = () => {
                 INTRODUCTION
               </h3>
               <p className="text-muted-foreground font-mono text-sm leading-relaxed">
-                Senior DevOps Engineer & Cloud Solutions Architect with expertise in Kubernetes orchestration, AWS infrastructure, CI/CD automation, and cloud-native application deployment. Specialized in building scalable, highly available systems with infrastructure-as-code and GitOps methodologies.
+                Junior DevOps Engineer with expertise in CI/CD pipeline automation using AWS DevOps and Azure DevOps. Specialized in containerization with Docker, monitoring solutions using Prometheus and Grafana, and deployment of ASP.NET, PHP, React, Node.js, and Next.js applications.
               </p>
             </div>
             <div className="mt-6 pt-6 border-t border-accent/20">
