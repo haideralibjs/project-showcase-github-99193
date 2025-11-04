@@ -9,27 +9,76 @@ const Dockerfiles = () => {
   
   const dockerfiles = [
     {
-      title: "PHP-FPM with Nginx",
-      description: "Multi-stage Docker setup for PHP applications with Nginx web server and PHP-FPM for optimal performance.",
-      technologies: ["Docker", "PHP-FPM", "Nginx", "Composer"],
-      content: `FROM php:8.2-fpm
+      title: "PHP-FPM with Nginx & Laravel",
+      description: "Production-ready PHP 8.2 FPM with Nginx, Supervisor, complete Laravel setup including migrations, asset building, and optimized caching.",
+      technologies: ["Docker", "PHP-FPM", "Nginx", "Laravel", "Composer", "Supervisor"],
+      content: `# Base image
+FROM php:8.2-fpm-alpine
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \\
-    nginx \\
-    supervisor \\
-    cron
+# Set default environment
+ENV APP_ENV=production
 
-# Configure PHP-FPM
-COPY custom-fpm-setting.conf /usr/local/etc/php-fpm.d/
+# Set working directory
+WORKDIR /var/www/html
 
-# Configure Nginx
-COPY nginx.conf /etc/nginx/sites-available/default
+# Install system dependencies + PHP extensions
+RUN apk add --no-cache \\
+    curl zip unzip git nodejs npm nginx supervisor gcc g++ make autoconf \\
+    libpng-dev libjpeg-turbo-dev libwebp-dev freetype-dev \\
+    oniguruma-dev libxml2-dev icu-dev zlib-dev libzip-dev \\
+    && docker-php-ext-configure gd \\
+        --with-freetype \\
+        --with-jpeg \\
+        --with-webp \\
+    && docker-php-ext-install -j$(nproc) \\
+        gd pdo pdo_mysql mbstring xml intl zip bcmath opcache
 
-# Setup supervisor
-COPY supervisor/php-artisan.conf /etc/supervisor/conf.d/
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-CMD ["/usr/bin/supervisord", "-n"]`,
+# Copy and activate PHP configuration
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
+# Copy production configuration files
+COPY configuration/production/custom-php-setting.ini /usr/local/etc/php/conf.d/custom-php-setting.ini
+COPY configuration/production/nginx.conf /etc/nginx/nginx.conf
+
+# Copy Supervisor configuration file
+COPY ./supervisor/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+
+# Copy application code
+COPY . .
+
+# Mark /var/www/html as safe for git
+RUN git config --global --add safe.directory /var/www/html
+
+# Install PHP dependencies
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Install JavaScript dependencies
+RUN npm install
+
+# Build frontend assets
+RUN npm run build
+
+# Cache Laravel config/routes/views and run migrations
+RUN php artisan config:clear && \\
+    php artisan config:cache && \\
+    php artisan view:cache && \\
+    php artisan migrate --force
+
+# Set correct permissions
+RUN chown -R www-data:www-data /var/www/html && \\
+    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Switch to non-root user
+USER root
+
+# Expose PHP-FPM port
+EXPOSE 80
+
+# Start Supervisor (manages PHP-FPM + Nginx)
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisor.conf"]`,
     },
     {
       title: "Node.js Application",
