@@ -65,10 +65,13 @@ const Hero = ({ searchQuery, setSearchQuery }: HeroProps) => {
       
       <div className="max-w-3xl mx-auto text-center relative z-10">
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-gradient-to-r from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-mid))] to-[hsl(var(--gradient-end))] bg-clip-text text-transparent drop-shadow-sm">
-          <TypingAnimation text="DevOps Portfolio" speed={80} />
+          <TypingAnimation text="DevOps Engineer" speed={80} />
         </h1>
-        <p className="mt-4 text-lg text-muted-foreground font-medium">
-          Junior DevOps Engineer | Docker & CI/CD Pipelines | PHP App Deployment | Monitoring & Automation
+        <p className="mt-4 text-xl text-foreground font-semibold">
+          Building Scalable Infrastructure & Automating Deployments
+        </p>
+        <p className="mt-2 text-base text-muted-foreground">
+          Specializing in Docker, CI/CD Pipelines, Cloud Infrastructure & Production-Grade PHP Deployments
         </p>
         
         <div className="mt-8 relative max-w-4xl mx-auto space-y-6">
@@ -108,27 +111,33 @@ const Hero = ({ searchQuery, setSearchQuery }: HeroProps) => {
           </div>
         </div>
 
-        <p className="mt-8 text-lg leading-8 text-muted-foreground flex flex-wrap justify-center gap-2">
-          {[
-            "Docker",
-            "CI/CD Pipelines",
-            "PHP Deployment",
-            "Prometheus",
-            "Grafana",
-            "Automation",
-            "GitHub Actions",
-            "Jenkins",
-            "GitLab CI",
-            "AWS",
-            "Google Cloud",
-            "Linux",
-            "Bash"
-          ].map((skill) => (
-            <span key={skill} className="bg-gradient-to-r from-[hsl(var(--gradient-start)_/_0.15)] to-[hsl(var(--gradient-end)_/_0.15)] px-3 py-1.5 rounded-full text-sm font-medium text-foreground border border-primary/20 hover:scale-105 transition-transform">
-              {skill}
-            </span>
-          ))}
-        </p>
+        <div className="mt-10">
+          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+            Technical Expertise
+          </h2>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              "Docker",
+              "Kubernetes",
+              "CI/CD Pipelines",
+              "PHP Deployment",
+              "Prometheus",
+              "Grafana",
+              "Infrastructure as Code",
+              "GitHub Actions",
+              "Jenkins",
+              "GitLab CI",
+              "AWS",
+              "Google Cloud",
+              "Linux Administration",
+              "Bash Scripting"
+            ].map((skill) => (
+              <span key={skill} className="bg-gradient-to-r from-[hsl(var(--gradient-start)_/_0.15)] to-[hsl(var(--gradient-end)_/_0.15)] px-4 py-2 rounded-full text-sm font-medium text-foreground border border-primary/20 hover:scale-105 hover:border-primary/40 transition-all">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
