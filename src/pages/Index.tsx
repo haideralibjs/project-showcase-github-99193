@@ -16,22 +16,22 @@ const Index = () => {
     {
       title: "Azure DevOps CI/CD Pipeline for ASP.NET Applications",
       description: "End-to-end CI/CD pipeline implementation on Azure DevOps featuring automated Docker containerization, Azure Container Registry integration, and continuous deployment workflows for ASP.NET Core applications.",
-      link: "/project-showcase-github-99193/Asp_Net_App_Pipeline_on_AzureDevops.pdf",
+      link: "/Asp_Net_App_Pipeline_on_AzureDevops.pdf",
     },
     {
       title: "ASP.NET Cloud Deployment Platform",
       description: "Production-ready ASP.NET application deployed on Google Cloud Platform with SQL Server database integration and secure firewall management.",
-      link: "/project-showcase-github-99193/DotNet_App_Deployment_and_Database_Setup.pdf",
+      link: "/DotNet_App_Deployment_and_Database_Setup.pdf",
     },
     {
       title: "PHP Application Deployment with Docker",
       description: "Containerized PHP application with Docker, PHP-FPM, Nginx, Supervisor for process management, and automated cron jobs for task scheduling.",
-      link: "/project-showcase-github-99193/Php_App_Fine_tuning_and_Deployment_Docker_Php-Fpm_Nginx_Supervisor_Cronjobs.pdf",
+      link: "/Php_App_Fine_tuning_and_Deployment_Docker_Php-Fpm_Nginx_Supervisor_Cronjobs.pdf",
     },
     {
       title: "Server Monitoring Dashboard with Slack Integration",
       description: "Real-time server and website uptime monitoring system built with Prometheus, Node Exporter, Blackbox Exporter, and Grafana featuring automated Slack alerting.",
-      link: "/project-showcase-github-99193/server-monitoring.pdf",
+      link: "/server-monitoring.pdf",
     },
     {
       title: "PostgreSQL Monitoring Platform on Kubernetes",
@@ -56,12 +56,12 @@ const Index = () => {
     {
       title: "Windows Remote Desktop Access Portal",
       description: "Secure Windows RDP configuration system with user management, connection troubleshooting, and enhanced security protocols for remote access.",
-      link: "/project-showcase-github-99193/Window_Rdp_Connection.pdf",
+      link: "/Window_Rdp_Connection.pdf",
     },
     {
       title: "AWS Multi-Environment CI/CD Pipeline",
       description: "Automated deployment pipeline for development and staging environments with AWS EC2, Application Load Balancer, SSL certificates, and custom domain configuration.",
-      link: "/project-showcase-github-99193/Code_Pipeline_Dev_Staging_Certificate_LoadBalancer_Domain.pdf",
+      link: "/Code_Pipeline_Dev_Staging_Certificate_LoadBalancer_Domain.pdf",
     },
     {
       title: "Monster Rolodex",
