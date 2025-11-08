@@ -8,7 +8,6 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
-import Timeline from "@/components/Timeline";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,9 +98,6 @@ const Index = () => {
         <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         
         <main className="space-y-0">
-          {/* Timeline Section */}
-          <Timeline />
-          
           {/* Projects Section */}
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="projects">
             <ScrollReveal>
