@@ -71,7 +71,7 @@ const Hero = ({ searchQuery, setSearchQuery }: HeroProps) => {
           Building Scalable Infrastructure & Automating Deployments
         </p>
         <p className="mt-2 text-base text-muted-foreground">
-          Specializing in Docker, CI/CD Pipelines, Cloud Infrastructure & Production-Grade PHP Deployments
+          Specializing in Docker, CI/CD Pipelines, Cloud Infrastructure & Production-Grade Deployments
         </p>
         
         <div className="mt-8 relative max-w-4xl mx-auto space-y-6">
