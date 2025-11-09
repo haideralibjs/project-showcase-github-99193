@@ -30,6 +30,51 @@ jobs:
       filename: "github-actions-ssh.yml"
     },
     {
+      title: "GitHub Actions - Docker Hub Deployment",
+      description: "Complete CI/CD pipeline with Docker Hub integration, automated image building, and remote deployment via SSH.",
+      technologies: ["GitHub Actions", "Docker", "Docker Hub", "SSH"],
+      type: "GitHub Actions",
+      content: `on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v5
+       
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: \${{ secrets.DOCKER_USERNAME }}
+        password: \${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+       context: .
+       push: true
+       tags: \${{ secrets.DOCKER_USERNAME }}/react-app:latest
+
+    - name : "ssh Into the system"
+      run : |
+        echo "\${{ secrets.BASE64_KEY }}" >> key.pem.b64
+        base64 --decode key.pem.b64 > key.pem
+        chmod 600 key.pem   
+        ssh -i key.pem -o StrictHostKeyChecking=no \${{ secrets.USERNAME }}@\${{ secrets.HOST }} "
+          docker stop react-app || true
+          docker rm react-app || true
+          docker pull \${{ secrets.DOCKER_USERNAME }}/react-app:latest
+          docker run -d --name react-app --restart unless-stopped -p 80:80 \${{ secrets.DOCKER_USERNAME }}/react-app:latest
+          docker image prune -f
+          docker logout 
+        "`,
+      filename: "docker-deploy.yml"
+    },
+    {
       title: "Azure DevOps - Docker Deployment",
       description: "Azure DevOps pipeline with self-hosted agent for building and deploying Docker containers with automated testing.",
       technologies: ["Azure DevOps", "Docker", "ASP.NET Core"],
