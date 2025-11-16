@@ -59,6 +59,11 @@ const Index = () => {
       link: "/Window_Rdp_Connection.pdf",
     },
     {
+      title: "Securing Portainer with Authentik OAuth",
+      description: "Complete guide for implementing OAuth 2.0 authentication in Portainer using Authentik, featuring MFA setup, application provider configuration, and secure Docker management access.",
+      link: "/Securing_Portainer_with_Authentik_OAuth.pdf",
+    },
+    {
       title: "AWS Multi-Environment CI/CD Pipeline",
       description: "Automated deployment pipeline for development and staging environments with AWS EC2, Application Load Balancer, SSL certificates, and custom domain configuration.",
       link: "/Code_Pipeline_Dev_Staging_Certificate_LoadBalancer_Domain.pdf",
